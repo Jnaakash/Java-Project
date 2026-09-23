@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration Form</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+
+            background:
+                radial-gradient(circle at top left, #6366f1 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #06b6d4 0%, transparent 35%),
+                linear-gradient(135deg, #0f172a, #1e293b);
+        }
+
+        /* Main Card */
+
+        .form-box {
+            width: 100%;
+            max-width: 520px;
+            padding: 40px;
+
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 24px;
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.35);
+
+            animation: slideUp 0.7s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header */
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 18px;
+
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+
+            color: white;
+            font-size: 30px;
+
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.35);
+        }
+
+        .header h1 {
+            color: #111827;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Form Group */
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        /* Input */
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 18px;
+            color: #6b7280;
+
+            pointer-events: none;
+        }
+
+        .input-box input[type="text"] {
+            width: 100%;
+            height: 50px;
+
+            padding: 0 15px 0 45px;
+
+            border: 1.5px solid #d1d5db;
+            border-radius: 12px;
+
+            outline: none;
+
+            font-size: 15px;
+            color: #111827;
+
+            background: #f9fafb;
+
+            transition: 0.3s;
+        }
+
+        .input-box input[type="text"]:focus {
+            border-color: #4f46e5;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .input-box input::placeholder {
+            color: #9ca3af;
+        }
+
+        /* Gender */
+
+        .gender-options {
+            display: flex;
+            gap: 12px;
+        }
+
+        .gender-option {
+            flex: 1;
+            position: relative;
+        }
+
+        .gender-option input {
+            display: none;
+        }
+
+        .gender-option label {
+            margin: 0;
+
+            height: 50px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1.5px solid #d1d5db;
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            color: #4b5563;
+
+            background: #f9fafb;
+
+            transition: 0.3s;
+        }
+
+        .gender-option label:hover {
+            border-color: #6366f1;
+            color: #4f46e5;
+        }
+
+        .gender-option input:checked + label {
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+            color: white;
+            border-color: transparent;
+
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
+        }
+
+        /* Terms */
+
+        .terms {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-top: 5px;
+
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        .terms input {
+            width: 18px;
+            height: 18px;
+
+            accent-color: #4f46e5;
+
+            cursor: pointer;
+        }
+
+        .terms label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .terms a {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+
+            margin-top: 30px;
+        }
+
+        button {
+            flex: 1;
+
+            height: 50px;
+
+            border: none;
+            border-radius: 12px;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .submit-btn {
+            color: white;
+
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #06b6d4
+            );
+
+            box-shadow:
+                0 8px 20px rgba(79, 70, 229, 0.25);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(79, 70, 229, 0.35);
+        }
+
+        .reset-btn {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .reset-btn:hover {
+            background: #e5e7eb;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Success Message */
+
+        .success-message {
+            display: none;
+
+            margin-top: 25px;
+            padding: 20px;
+
+            border-radius: 15px;
+
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+
+            color: #065f46;
+
+            animation: fadeIn 0.4s ease;
+        }
+
+        .success-message h3 {
+            margin-bottom: 10px;
+            color: #047857;
+        }
+
+        .success-message p {
+            margin: 6px 0;
+            font-size: 14px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Footer */
+
+        .footer {
+            text-align: center;
+
+            margin-top: 25px;
+
+            font-size: 12px;
+
+            color: #9ca3af;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 550px) {
+
+            .form-box {
+                padding: 28px 22px;
+                border-radius: 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .gender-options {
+                flex-direction: column;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-box">
+
+        <!-- Header -->
+
+        <div class="header">
+
+            <div class="logo">
+                🎓
+            </div>
+
+            <h1>Student Registration</h1>
+
+            <p>
+                Create your student profile by filling in the details below.
+            </p>
+
+        </div>
+
+
+        <!-- Form -->
+
+        <form onsubmit="registerStudent(event)">
+
+            <!-- Student Name -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Student Name <span class="required">*</span>
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">👤</span>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Roll Number -->
+
+            <div class="form-group">
+
+                <label for="roll">
+                    Roll Number <span class="required">*</span>
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">🆔</span>
+
+                    <input
+                        type="text"
+                        id="roll"
+                        placeholder="Enter your roll number"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Gender -->
+
+            <div class="form-group">
+
+                <label>
+                    Gender <span class="required">*</span>
+                </label>
+
+                <div class="gender-options">
+
+                    <div class="gender-option">
+
+                        <input
+                            type="radio"
+                            id="male"
+                            name="gender"
+                            value="Male"
+                        >
+
+                        <label for="male">
+                            👨 Male
+                        </label>
+
+                    </div>
+
+
+                    <div class="gender-option">
+
+                        <input
+                            type="radio"
+                            id="female"
+                            name="gender"
+                            value="Female"
+                        >
+
+                        <label for="female">
+                            👩 Female
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Branch -->
+
+            <div class="form-group">
+
+                <label for="branch">
+                    Branch <span class="required">*</span>
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">💻</span>
+
+                    <input
+                        type="text"
+                        id="branch"
+                        placeholder="Example: Computer Science"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Terms -->
+
+            <div class="terms">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                >
+
+                <label for="terms">
+                    I accept the
+                    <a href="#" onclick="return false;">
+                        Terms & Conditions
+                    </a>
+                </label>
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Register Student
+                </button>
+
+                <button
+                    type="reset"
+                    class="reset-btn"
+                    onclick="resetForm()"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <!-- Success -->
+
+        <div
+            class="success-message"
+            id="successMessage"
+        >
+
+            <h3>✓ Registration Successful!</h3>
+
+            <p>
+                <strong>Student Name:</strong>
+                <span id="resultName"></span>
+            </p>
+
+            <p>
+                <strong>Roll Number:</strong>
+                <span id="resultRoll"></span>
+            </p>
+
+            <p>
+                <strong>Gender:</strong>
+                <span id="resultGender"></span>
+            </p>
+
+            <p>
+                <strong>Branch:</strong>
+                <span id="resultBranch"></span>
+            </p>
+
+        </div>
+
+
+        <div class="footer">
+            © 2026 Student Registration Portal
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function registerStudent(event) {
+
+            event.preventDefault();
+
+
+            // Get values
+
+            let name =
+                document.getElementById("name").value.trim();
+
+            let roll =
+                document.getElementById("roll").value.trim();
+
+            let branch =
+                document.getElementById("branch").value.trim();
+
+
+            let gender =
+                document.querySelector(
+                    'input[name="gender"]:checked'
+                );
+
+
+            let terms =
+                document.getElementById("terms").checked;
+
+
+            // Validation
+
+            if (
+                name === "" ||
+                roll === "" ||
+                branch === ""
+            ) {
+
+                alert("Please enter all student details.");
+
+                return;
+            }
+
+
+            if (gender === null) {
+
+                alert("Please select your gender.");
+
+                return;
+            }
+
+
+            if (!terms) {
+
+                alert(
+                    "Please accept the Terms & Conditions."
+                );
+
+                return;
+            }
+
+
+            // Display result
+
+            document.getElementById("resultName").textContent =
+                name;
+
+            document.getElementById("resultRoll").textContent =
+                roll;
+
+            document.getElementById("resultGender").textContent =
+                gender.value;
+
+            document.getElementById("resultBranch").textContent =
+                branch;
+
+
+            // Show success message
+
+            document.getElementById("successMessage").style.display =
+                "block";
+
+
+            // Scroll to success message
+
+            document.getElementById("successMessage")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+        }
+
+
+        // Reset form
+
+        function resetForm() {
+
+            document.getElementById("successMessage").style.display =
+                "none";
+
+        }
+
+    </script>
+
+</body>
+</html>
+```
