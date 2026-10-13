@@ -1,0 +1,428 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+
+<!-- ============================= -->
+<!-- ShopSphere Common Header      -->
+<!-- ============================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Main E-Commerce Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+
+<style>
+
+    /* =========================================
+       GLOBAL FONT
+       ========================================= */
+
+    * {
+        font-family: 'Poppins', sans-serif;
+        box-sizing: border-box;
+    }
+
+
+    /* =========================================
+       BODY
+       ========================================= */
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        color: #172033;
+        background: #f6f8fc;
+    }
+
+
+    /* =========================================
+       NAVBAR
+       ========================================= */
+
+    .shop-navbar {
+        width: 100%;
+        height: 74px;
+
+        background: #ffffff;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 28px;
+
+        border-bottom: 1px solid #e7eaf0;
+
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+    }
+
+
+    /* =========================================
+       LOGO
+       ========================================= */
+
+    .shop-logo {
+        text-decoration: none;
+
+        font-size: 27px;
+        font-weight: 800;
+
+        color: #2563eb;
+
+        letter-spacing: -0.8px;
+
+        transition: all 0.2s ease;
+    }
+
+    .shop-logo:hover {
+        color: #1d4ed8;
+        transform: translateY(-1px);
+    }
+
+
+    /* =========================================
+       NAVIGATION AREA
+       ========================================= */
+
+    .shop-nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+
+    /* =========================================
+       NAVIGATION LINKS
+       ========================================= */
+
+    .shop-nav-link {
+        text-decoration: none;
+
+        color: #1f2937;
+
+        font-size: 15px;
+        font-weight: 600;
+
+        padding: 10px 14px;
+
+        border-radius: 8px;
+
+        transition: all 0.2s ease;
+    }
+
+    .shop-nav-link:hover {
+        color: #2563eb;
+        background: #eff6ff;
+    }
+
+
+    /* =========================================
+       CART LINK
+       ========================================= */
+
+    .shop-cart-link {
+        text-decoration: none;
+
+        color: #1f2937;
+
+        font-size: 15px;
+        font-weight: 600;
+
+        padding: 10px 14px;
+
+        border-radius: 8px;
+
+        transition: all 0.2s ease;
+    }
+
+    .shop-cart-link:hover {
+        color: #2563eb;
+        background: #eff6ff;
+    }
+
+
+    /* =========================================
+       ORDERS LINK
+       ========================================= */
+
+    .shop-orders-link {
+        text-decoration: none;
+
+        color: #1f2937;
+
+        font-size: 15px;
+        font-weight: 600;
+
+        padding: 10px 14px;
+
+        border-radius: 8px;
+
+        transition: all 0.2s ease;
+    }
+
+    .shop-orders-link:hover {
+        color: #2563eb;
+        background: #eff6ff;
+    }
+
+
+    /* =========================================
+       LOGOUT BUTTON
+       ========================================= */
+
+    .shop-logout {
+        text-decoration: none;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-left: 8px;
+
+        padding: 10px 18px;
+
+        background: #dc2626;
+        color: #ffffff;
+
+        border-radius: 8px;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        transition: all 0.2s ease;
+    }
+
+    .shop-logout:hover {
+        background: #b91c1c;
+
+        color: #ffffff;
+
+        transform: translateY(-1px);
+
+        box-shadow: 0 5px 12px rgba(220, 38, 38, 0.18);
+    }
+
+
+    /* =========================================
+       MOBILE MENU BUTTON
+       ========================================= */
+
+    .shop-mobile-menu {
+        display: none;
+
+        border: none;
+        background: transparent;
+
+        font-size: 25px;
+
+        cursor: pointer;
+
+        color: #172033;
+    }
+
+
+    /* =========================================
+       MOBILE NAVIGATION
+       ========================================= */
+
+    @media (max-width: 760px) {
+
+        .shop-navbar {
+            height: 68px;
+            padding: 0 18px;
+        }
+
+        .shop-logo {
+            font-size: 23px;
+        }
+
+        .shop-mobile-menu {
+            display: block;
+        }
+
+        .shop-nav {
+            display: none;
+
+            position: absolute;
+
+            top: 68px;
+            left: 0;
+
+            width: 100%;
+
+            background: #ffffff;
+
+            flex-direction: column;
+
+            align-items: stretch;
+
+            padding: 12px 18px 18px;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+        }
+
+        .shop-nav.show {
+            display: flex;
+        }
+
+        .shop-nav-link,
+        .shop-cart-link,
+        .shop-orders-link {
+            width: 100%;
+
+            padding: 12px 14px;
+
+            text-align: left;
+        }
+
+        .shop-logout {
+            width: 100%;
+
+            margin-left: 0;
+
+            margin-top: 5px;
+        }
+    }
+
+</style>
+
+
+<!-- ========================================= -->
+<!-- NAVBAR                                    -->
+<!-- ========================================= -->
+
+<header class="shop-navbar">
+
+
+    <!-- ===================================== -->
+    <!-- SHOPSPHERE LOGO                       -->
+    <!-- Clicking this opens HOME PAGE         -->
+    <!-- ===================================== -->
+
+    <a
+        href="${pageContext.request.contextPath}/index.jsp"
+        class="shop-logo"
+        title="ShopSphere Home"
+    >
+        ShopSphere
+    </a>
+
+
+    <!-- ===================================== -->
+    <!-- MOBILE MENU BUTTON                    -->
+    <!-- ===================================== -->
+
+    <button
+        type="button"
+        class="shop-mobile-menu"
+        onclick="toggleShopMenu()"
+        aria-label="Open Menu"
+    >
+        ☰
+    </button>
+
+
+    <!-- ===================================== -->
+    <!-- NAVIGATION                             -->
+    <!-- ===================================== -->
+
+    <nav class="shop-nav" id="shopNavigation">
+
+
+        <!-- PRODUCTS -->
+
+        <a
+            href="${pageContext.request.contextPath}/products"
+            class="shop-nav-link"
+        >
+            Products
+        </a>
+
+
+        <!-- CART -->
+
+        <a
+            href="${pageContext.request.contextPath}/cart"
+            class="shop-cart-link"
+        >
+            Cart
+        </a>
+
+
+        <!-- MY ORDERS -->
+
+        <a
+            href="${pageContext.request.contextPath}/orders"
+            class="shop-orders-link"
+        >
+            My Orders
+        </a>
+
+
+        <!-- LOGOUT -->
+
+        <a
+            href="${pageContext.request.contextPath}/logout"
+            class="shop-logout"
+        >
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ========================================= -->
+<!-- MOBILE MENU JAVASCRIPT                   -->
+<!-- ========================================= -->
+
+<script>
+
+    function toggleShopMenu() {
+
+        const navigation =
+            document.getElementById("shopNavigation");
+
+        if (navigation) {
+            navigation.classList.toggle("show");
+        }
+    }
+
+
+    /*
+     * Close mobile menu when clicking
+     * outside the navbar.
+     */
+
+    document.addEventListener("click", function(event) {
+
+        const navigation =
+            document.getElementById("shopNavigation");
+
+        const menuButton =
+            document.querySelector(".shop-mobile-menu");
+
+        if (!navigation || !menuButton) {
+            return;
+        }
+
+        if (
+            !navigation.contains(event.target) &&
+            !menuButton.contains(event.target)
+        ) {
+
+            navigation.classList.remove("show");
+        }
+
+    });
+
+</script>
